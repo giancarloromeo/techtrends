@@ -1,0 +1,22 @@
+## Docker commands used to build the application 
+docker build -t techtrends .
+
+## Docker commands used to run the application
+# Used --name option to give a name to the docker container and simplify logs access (see below)
+docker run --name techtrends -d -p 7111:3111 techtrends
+
+## Docker commands used to get the application logs
+# Used -f option to follow the log output
+docker logs -f techtrends
+
+## Logs from the container running the TechTrends application
+2022-10-27 18:53:06,055 [INFO] Article 'KubeCon + CloudNativeCon 2021' retrieved!
+2022-10-27 18:53:06,090 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:06] "GET /2 HTTP/1.1" 200 -
+2022-10-27 18:53:06,157 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:06] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-10-27 18:53:12,653 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:12] "GET /create HTTP/1.1" 200 -
+2022-10-27 18:53:12,711 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:12] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-10-27 18:53:53,824 [INFO] Article 'New Udacity Scholarship' created!
+2022-10-27 18:53:53,826 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:53] "POST /create HTTP/1.1" 302 -
+2022-10-27 18:53:53,861 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:53] "GET / HTTP/1.1" 200 -
+2022-10-27 18:53:53,925 [INFO] 172.17.0.1 - - [27/Oct/2022 18:53:53] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-10-27 18:54:14,084 [INFO] 172.17.0.1 - - [27/Oct/2022 18:54:14] "GET /metrics HTTP/1.1" 200 -
