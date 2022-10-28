@@ -121,11 +121,23 @@ def create():
 @app.route("/healthz")
 def healthz():
     """Returns the health status."""
-    res = app.response_class(
-        response=json.dumps({"result": "OK - healthy"}),
-        status=200,
-        mimetype="application/json"
-    )
+
+    try:
+        db.get_posts_count()    # get posts count to check the DB
+
+        res = app.response_class(
+            response=json.dumps({"result": "OK - healthy"}),
+            status=200,
+            mimetype="application/json"
+        )
+    except sqlite3.OperationalError as err:
+        app.logger.error("error: %s", err)
+        res = app.response_class(
+            response=json.dumps({"result": "ERROR - unhealthy"}),
+            status=500,
+            mimetype="application/json"
+        )
+
     return res
 
 
