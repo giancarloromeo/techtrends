@@ -10,7 +10,7 @@ service:
 replicaCount: 1
 
 image:
-  repository: techtrends
+  repository: giancarloromeo/techtrends
   tag: latest
   pullPolicy: IfNotPresent
 
