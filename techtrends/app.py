@@ -1,6 +1,7 @@
 """This module contains the TechTrends application."""
 import logging
 import sqlite3
+import sys
 
 from contextlib import contextmanager
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
@@ -155,12 +156,14 @@ def metrics():
 
 
 if __name__ == "__main__":
+
+    stdout_handler =  logging.StreamHandler(sys.stdout)
+    stderr_handler =  logging.StreamHandler()   # sys.stderr by default
+
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.StreamHandler()
-        ]
+        handlers=[stderr_handler, stdout_handler]
     )
 
     app.run(host="0.0.0.0", port="3111")
